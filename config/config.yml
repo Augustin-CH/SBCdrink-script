@@ -1,0 +1,13 @@
+# config.yml
+belt:
+  pin_out_1: 10
+  pin_out_2: 25
+  pin_out_3: 9
+  pin_out_4: 11
+  step_sleep: 0.001
+bottle:
+  pin_out_1: 17
+  pin_out_2: 18
+  pin_out_3: 27
+  pin_out_4: 22
+  step_sleep: 0.001
