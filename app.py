@@ -6,35 +6,39 @@ import board
 import neopixel
 import time
 import random
-
+import asyncio
+from threading import Thread
 app = Flask(__name__)
 pixels = neopixel.NeoPixel(board.D18, 36)
 PIXEL_LENGHT = 8
 
 @app.route("/")
 def hello_world():
+    daemon = Thread(target=launch, daemon=True, name='Monitor')
+    daemon.start()
+    #asyncio.run(launch())
+    return "lancé"
+
+def launch():
     while True:
-        color = random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)
-
-        for x in range(24):
-            lightPixel(x, color)
-
+        for x in range(36):
+            lightPixel(x)
 
 def mapToOuterIndex(index):
-    if(index >= 24):
-        return index - 24
+    if(index >= 36):
+        return index - 36
     return index
 
 def mapToInnerIndex(index):
-    if(index >= 24):
-        index = index - 24
+    if(index >= 36):
+        index = index - 36
     return 35-(index//2)
 
-def lightPixel(index, color):
-    pixels[mapToOuterIndex(index)] = (0, 0, 0)
-    pixels[mapToInnerIndex(index)] = (0, 0, 0)
-    pixels[mapToOuterIndex(index) + PIXEL_LENGHT] = (color)
-    pixels[mapToInnerIndex(index) + PIXEL_LENGHT//2] = (color)
+def lightPixel(index):
+    color = random.randint(0, 140), random.randint(0, 140), random.randint(0, 140)
+    pixels[index] = (color)
+    #pixels[mapToInnerIndex(index)] = (0, 0, 0)
+    #pixels[mapToOuterIndex(index) + PIXEL_LENGHT] = (color)
+    #pixels[mapToInnerIndex(index) + PIXEL_LENGHT//2] = (color)
     time.sleep(0.03)
-
 
