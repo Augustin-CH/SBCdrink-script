@@ -1,13 +1,26 @@
 # config.yml
-belt:
+belt_engine:
   pin_out_1: 10
   pin_out_2: 25
   pin_out_3: 9
   pin_out_4: 11
   step_sleep: 0.001
-bottle:
+bottle_engine:
   pin_out_1: 17
   pin_out_2: 18
   pin_out_3: 27
   pin_out_4: 22
   step_sleep: 0.001
+bottle_slot_position:
+  slot_1: 0
+  slot_2: 1
+  slot_3: 2
+  slot_4: 3
+  slot_5: 4
+  slot_6: 5
+  slot_7: 6
+  slot_8: 7
+  slot_9: 8
+  slot_10: 9
+  slot_11: 10
+  slot_12: 11

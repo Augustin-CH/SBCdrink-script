@@ -7,14 +7,14 @@ from config.config import *
 GPIO.setmode(GPIO.BCM)         # Paramétrage de la numérotation des GPIO en mode BCM
 GPIO.setwarnings(True)        # Ne pas tenir comte des alertes
 
-GPIO.setup(BELT_PIN_OUT_1, GPIO.OUT)     # GPIO PIN_OUT configuré en sortie
-GPIO.setup(BELT_PIN_OUT_2, GPIO.OUT)      # GPIO PIN_OUT configuré en sortie
-GPIO.setup(BELT_PIN_OUT_3, GPIO.OUT)     # GPIO PIN_OUT configuré en sortie
-GPIO.setup(BELT_PIN_OUT_4, GPIO.OUT)      # GPIO PIN_OUT configuré en sortie
-GPIO.setup(BOTTLE_PIN_OUT_1, GPIO.OUT)     # GPIO PIN_OUT configuré en sortie
-GPIO.setup(BOTTLE_PIN_OUT_2, GPIO.OUT)      # GPIO PIN_OUT configuré en sortie
-GPIO.setup(BOTTLE_PIN_OUT_3, GPIO.OUT)     # GPIO PIN_OUT configuré en sortie
-GPIO.setup(BOTTLE_PIN_OUT_4, GPIO.OUT)      # GPIO PIN_OUT configuré en sortie
+GPIO.setup(BELT_ENGINE["PIN_OUT_1"], GPIO.OUT)     # GPIO PIN_OUT configuré en sortie
+GPIO.setup(BELT_ENGINE["PIN_OUT_2"], GPIO.OUT)      # GPIO PIN_OUT configuré en sortie
+GPIO.setup(BELT_ENGINE["PIN_OUT_3"], GPIO.OUT)     # GPIO PIN_OUT configuré en sortie
+GPIO.setup(BELT_ENGINE["PIN_OUT_4"], GPIO.OUT)      # GPIO PIN_OUT configuré en sortie
+GPIO.setup(BOTTLE_ENGINE["PIN_OUT_1"], GPIO.OUT)     # GPIO PIN_OUT configuré en sortie
+GPIO.setup(BOTTLE_ENGINE["PIN_OUT_2"], GPIO.OUT)      # GPIO PIN_OUT configuré en sortie
+GPIO.setup(BOTTLE_ENGINE["PIN_OUT_3"], GPIO.OUT)     # GPIO PIN_OUT configuré en sortie
+GPIO.setup(BOTTLE_ENGINE["PIN_OUT_4"], GPIO.OUT)      # GPIO PIN_OUT configuré en sortie
 
 def rotate(motorType, dist, sens):
     
@@ -31,17 +31,17 @@ def rotate(motorType, dist, sens):
     step_sleep = 0
 
     if motorType == "belt":
-        pin_out_1 = BELT_PIN_OUT_1
-        pin_out_2 = BELT_PIN_OUT_2
-        pin_out_3 = BELT_PIN_OUT_3
-        pin_out_4 = BELT_PIN_OUT_4
-        step_sleep = BELT_STEP_SLEEP
+        pin_out_1 = BELT_ENGINE["PIN_OUT_1"]
+        pin_out_2 = BELT_ENGINE["PIN_OUT_2"]
+        pin_out_3 = BELT_ENGINE["PIN_OUT_3"]
+        pin_out_4 = BELT_ENGINE["PIN_OUT_4"]
+        step_sleep = BELT_ENGINE["STEP_SLEEP"]
     elif motorType == "bottle":
-        pin_out_1 = BOTTLE_PIN_OUT_1
-        pin_out_2 = BOTTLE_PIN_OUT_2
-        pin_out_3 = BOTTLE_PIN_OUT_3
-        pin_out_4 = BOTTLE_PIN_OUT_4
-        step_sleep = BOTTLE_STEP_SLEEP
+        pin_out_1 = BOTTLE_ENGINE["PIN_OUT_1"]
+        pin_out_2 = BOTTLE_ENGINE["PIN_OUT_2"]
+        pin_out_3 = BOTTLE_ENGINE["PIN_OUT_3"]
+        pin_out_4 = BOTTLE_ENGINE["PIN_OUT_4"]
+        step_sleep = BOTTLE_ENGINE["STEP_SLEEP"]
 
     for i in rangefor:
         if i%4==0:
