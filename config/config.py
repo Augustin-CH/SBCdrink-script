@@ -33,3 +33,7 @@ BOTTLE_SLOT_POSITION = {
     "SLOT_11": config["bottle_slot_position"]["slot_11"],
     "SLOT_12": config["bottle_slot_position"]["slot_12"],
 }
+
+TIME_FOR_ONE_QUANTITY = config["time_for_one_quantity"]
+
+TIME_FOR_FILL_DISPENSOR = config["time_for_fill_dispensor"]

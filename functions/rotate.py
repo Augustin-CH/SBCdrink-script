@@ -3,25 +3,34 @@ from time import sleep
 import RPi.GPIO as GPIO
 from config.config import *
 
-
 GPIO.setmode(GPIO.BCM)         # Paramétrage de la numérotation des GPIO en mode BCM
 GPIO.setwarnings(True)        # Ne pas tenir comte des alertes
 
-GPIO.setup(BELT_ENGINE["PIN_OUT_1"], GPIO.OUT)     # GPIO PIN_OUT configuré en sortie
-GPIO.setup(BELT_ENGINE["PIN_OUT_2"], GPIO.OUT)      # GPIO PIN_OUT configuré en sortie
-GPIO.setup(BELT_ENGINE["PIN_OUT_3"], GPIO.OUT)     # GPIO PIN_OUT configuré en sortie
-GPIO.setup(BELT_ENGINE["PIN_OUT_4"], GPIO.OUT)      # GPIO PIN_OUT configuré en sortie
-GPIO.setup(BOTTLE_ENGINE["PIN_OUT_1"], GPIO.OUT)     # GPIO PIN_OUT configuré en sortie
-GPIO.setup(BOTTLE_ENGINE["PIN_OUT_2"], GPIO.OUT)      # GPIO PIN_OUT configuré en sortie
-GPIO.setup(BOTTLE_ENGINE["PIN_OUT_3"], GPIO.OUT)     # GPIO PIN_OUT configuré en sortie
-GPIO.setup(BOTTLE_ENGINE["PIN_OUT_4"], GPIO.OUT)      # GPIO PIN_OUT configuré en sortie
+GPIO.setup(BELT_ENGINE["PIN_OUT_1"], GPIO.OUT, initial=0)     # GPIO PIN_OUT configuré en sortie
+GPIO.setup(BELT_ENGINE["PIN_OUT_2"], GPIO.OUT, initial=0)      # GPIO PIN_OUT configuré en sortie
+GPIO.setup(BELT_ENGINE["PIN_OUT_3"], GPIO.OUT, initial=0)     # GPIO PIN_OUT configuré en sortie
+GPIO.setup(BELT_ENGINE["PIN_OUT_4"], GPIO.OUT, initial=0)      # GPIO PIN_OUT configuré en sortie
+GPIO.setup(BOTTLE_ENGINE["PIN_OUT_1"], GPIO.OUT, initial=0)     # GPIO PIN_OUT configuré en sortie
+GPIO.setup(BOTTLE_ENGINE["PIN_OUT_2"], GPIO.OUT, initial=0)      # GPIO PIN_OUT configuré en sortie
+GPIO.setup(BOTTLE_ENGINE["PIN_OUT_3"], GPIO.OUT, initial=0)     # GPIO PIN_OUT configuré en sortie
+GPIO.setup(BOTTLE_ENGINE["PIN_OUT_4"], GPIO.OUT, initial=0)      # GPIO PIN_OUT configuré en sortie
+
+def setAllLow():
+    GPIO.output(BELT_ENGINE["PIN_OUT_1"], GPIO.LOW)
+    GPIO.output(BELT_ENGINE["PIN_OUT_2"], GPIO.LOW)
+    GPIO.output(BELT_ENGINE["PIN_OUT_3"], GPIO.LOW)
+    GPIO.output(BELT_ENGINE["PIN_OUT_4"], GPIO.LOW)
+    GPIO.output(BOTTLE_ENGINE["PIN_OUT_1"], GPIO.LOW)
+    GPIO.output(BOTTLE_ENGINE["PIN_OUT_2"], GPIO.LOW)
+    GPIO.output(BOTTLE_ENGINE["PIN_OUT_3"], GPIO.LOW)
+    GPIO.output(BOTTLE_ENGINE["PIN_OUT_4"], GPIO.LOW)
 
 def rotate(motorType, dist, sens):
     
     rangefor = 0
-    if sens == "up":
+    if sens == "down" or sens =="left":
         rangefor = range(dist)
-    elif sens == "down":
+    elif sens == "up" or sens == "right":
         rangefor = range(dist, 0, -1)
 
     pin_out_1 = 0
@@ -66,3 +75,4 @@ def rotate(motorType, dist, sens):
             GPIO.output(pin_out_1, GPIO.HIGH)
 
         sleep(step_sleep)
+    setAllLow()

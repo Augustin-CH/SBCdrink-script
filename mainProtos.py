@@ -2,7 +2,7 @@ import sys
 import os
 import json
 from config.config import *
-# from functions.getLiquid import getLiquid
+from functions.getLiquid import getLiquid
 
 # Ajouter le dossier protos au chemin du système
 sys.path.append(os.path.join(os.path.dirname(__file__), 'protos'))
@@ -11,6 +11,7 @@ import grpc
 from concurrent import futures
 import machine_pb2, machine_pb2_grpc
 from time import sleep
+import RPi.GPIO as GPIO
 
 class MachineServicer(machine_pb2_grpc.MachineServicer):
     def MakeCocktail(self, request, context):
@@ -20,12 +21,12 @@ class MachineServicer(machine_pb2_grpc.MachineServicer):
 
         # order steps by order key
         steps.sort(key=lambda step: step['order'])
-
         for step in steps:
             print(f"distribute {step['quantity']}cl of {step['ingredient']} from slot {step['slot']}")
-            getLiquid(2)
+            getLiquid(step['quantity'], step['slot'])
             # sleep(1)
 
+        print(f"the cocktail is finished")
         return machine_pb2.MakeCocktailResponse(success=True, message="Action réalisée avec succès")
 
 def serve():
@@ -39,3 +40,4 @@ def serve():
 
 if __name__ == '__main__':
     serve()
+    GPIO.cleanup()
