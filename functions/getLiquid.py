@@ -6,7 +6,7 @@ from config.config import *
 def quantityToTime(quantity):
     return quantity * TIME_FOR_ONE_QUANTITY
 
-def getLiquid(quantity, slot):
+def getLiquid(quantity, slot, position):
 
     # rotate("belt" , 850, "right") # droit
     # sleep(1)
@@ -41,3 +41,4 @@ def getLiquid(quantity, slot):
         bottleUptime  = bottleUptime - TIME_FOR_ONE_QUANTITY * quantityPerTurn
 
     rotate("belt" , int(beltRightTime), "left")   # decale gauche
+    return position
