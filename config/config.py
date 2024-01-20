@@ -19,6 +19,10 @@ BOTTLE_ENGINE = {
     "STEP_SLEEP": config["bottle_engine"]["step_sleep"],
 }
 
+BELT_LIMIT_SENSOR = {
+    "PIN_SIGNAL": config["belt_limit_sensor"]["pin_signal"],
+}
+
 BOTTLE_SLOT_POSITION = {
     "SLOT_1": config["bottle_slot_position"]["slot_1"],
     "SLOT_2": config["bottle_slot_position"]["slot_2"],
