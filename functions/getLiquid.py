@@ -19,9 +19,14 @@ def getLiquid(quantity, slot, position):
 
 
     bottleUptime = quantityToTime(quantity)
-    beltRightTime = BOTTLE_SLOT_POSITION["SLOT_" + str(slot)]
+    beltRightTime = (BOTTLE_SLOT_POSITION["SLOT_" + str(slot)] - position)
 
-    rotate("belt", int(beltRightTime), "up")   # decale droite
+    if (BOTTLE_SLOT_POSITION["SLOT_" + str(slot)] - position < 0):
+        # If position is higher than slot position, go to the left
+        rotate("belt", int(position - BOTTLE_SLOT_POSITION["SLOT_" + str(slot)]), "left")
+    else:
+        # Else, go right
+        rotate("belt", int(BOTTLE_SLOT_POSITION["SLOT_" + str(slot)] - position ), "right")
 
     # TODO: get slot volume from api
     quantityPerTurn = 35 # 35cl par tour
@@ -31,14 +36,13 @@ def getLiquid(quantity, slot, position):
         rotate("bottle" , 450, "up") # monte
         sleep(bottleUptime)
         rotate("bottle" , 90, "down")  # descend
-        sleep(1)
+        sleep(0.5)
         rotate("belt" ,80, "right")   # decale droite
         sleep(1)
         rotate("bottle" ,360, "down")  # descend
-        sleep(TIME_FOR_FILL_DISPENSOR)
-        rotate("belt" ,80, "left")   # decale gauche
+        #sleep(TIME_FOR_FILL_DISPENSOR)
+        #rotate("belt" ,80, "left")   # decale gauche
         sleep(1)
         bottleUptime  = bottleUptime - TIME_FOR_ONE_QUANTITY * quantityPerTurn
-
-    rotate("belt" , int(beltRightTime), "left")   # decale gauche
+    position = int(BOTTLE_SLOT_POSITION["SLOT_" + str(slot)] + 80)
     return position

@@ -4,7 +4,7 @@ belt_engine:
   pin_out_2: 25
   pin_out_3: 9
   pin_out_4: 11
-  step_sleep: 0.003
+  step_sleep: 0.0025
 bottle_engine:
   pin_out_1: 17
   pin_out_2: 18
@@ -15,8 +15,8 @@ belt_limit_sensor:
   pin_signal: 16
 bottle_slot_position:
   slot_1: 0 # in step
-  slot_2: 850
-  slot_3: 2
+  slot_2: 1100
+  slot_3: 1980
   slot_4: 3
   slot_5: 4
   slot_6: 5
