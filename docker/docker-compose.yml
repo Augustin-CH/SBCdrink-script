@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  sbcdrink-script:
+    build: 
+      context: ../
+      dockerfile: docker/Dockerfile
+      target: development
+    container_name: sbcdrink-script
+    restart: always
+    ports:
+      - 50051:50051
+    # env_file:
+    #   - ../.env
+    volumes:
+      - ../:/script
+    networks:
+      - sbcdrink-network
+
+networks:
+  sbcdrink-network:
