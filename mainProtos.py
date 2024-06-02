@@ -20,11 +20,11 @@ class MachineServicer(machine_pb2_grpc.MachineServicer):
         steps = json.loads(request.steps)
 
         # order steps by order key
-        # steps.sort(key=lambda step: step['order'])
-        # for step in steps:
-        #     print(f"distribute {step['quantity']}cl of {step['ingredient']} from slot {step['slot']}")
-        #     getLiquid(step['quantity'], step['slot'])
-        #     # sleep(1)
+        steps.sort(key=lambda step: step['order'])
+        for step in steps:
+            print(f"distribute {step['quantity']}cl of {step['ingredient']} from slot {step['slot']}")
+            getLiquid(step['quantity'], step['slot'])
+            # sleep(1)
 
         # print(f"the cocktail is finished")
         return machine_pb2.MakeCocktailResponse(success=True, message="Action réalisée avec succès")
