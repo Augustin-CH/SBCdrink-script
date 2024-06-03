@@ -21,4 +21,4 @@ FROM python:3.9-slim as production
 WORKDIR /script
 COPY --from=build /script /script
 COPY --from=build /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
-CMD ["python", "/script/mainProtos.py"]
+CMD ["python", "-u", "mainProtos.py"]
