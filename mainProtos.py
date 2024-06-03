@@ -30,6 +30,7 @@ class MachineServicer(machine_pb2_grpc.MachineServicer):
         return machine_pb2.MakeCocktailResponse(success=True, message="Action réalisée avec succès")
 
 def serve():
+    print("Server started")
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=1))
     machine_pb2_grpc.add_MachineServicer_to_server(
         MachineServicer(), server
