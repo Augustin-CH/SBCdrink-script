@@ -2,12 +2,8 @@ import sys
 import os
 import json
 from config.config import *
-<<<<<<< HEAD
 from functions.getLiquid import getLiquid
 from functions.rotate import initPosition, rotate, presentCoktail
-=======
-# from functions.getLiquid import getLiquid
->>>>>>> main
 
 # Ajouter le dossier protos au chemin du système
 sys.path.append(os.path.join(os.path.dirname(__file__), 'protos'))
