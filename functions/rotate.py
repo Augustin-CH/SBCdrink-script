@@ -4,7 +4,7 @@ import RPi.GPIO as GPIO
 from config.config import *
 
 GPIO.setmode(GPIO.BCM)         # Paramétrage de la numérotation des GPIO en mode BCM
-GPIO.setwarnings(True)        # Ne pas tenir comte des alertes
+GPIO.setwarnings(True)        # Ne pas tenir compte des alertes
 
 GPIO.setup(BELT_ENGINE["PIN_OUT_1"], GPIO.OUT, initial=0)     # GPIO PIN_OUT configuré en sortie
 GPIO.setup(BELT_ENGINE["PIN_OUT_2"], GPIO.OUT, initial=0)      # GPIO PIN_OUT configuré en sortie
@@ -120,3 +120,9 @@ def initPosition():
         else:
             setAllLow()
             break
+
+def presentCoktail(position):
+    if(position > PRESENT_POSITION):
+        rotate(BELT_ENGINE, position-PRESENT_POSITION, "left")
+    else:
+        rotate(BELT_ENGINE, PRESENT_POSITION - position, "right")

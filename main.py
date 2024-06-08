@@ -4,7 +4,7 @@ from time import sleep
 import json
 import RPi.GPIO as GPIO
 from config.config import *
-from functions.rotate import initPosition, rotate
+from functions.rotate import initPosition, rotate, presentCoktail
 
 position = 10
 
@@ -29,14 +29,14 @@ with open('testCocktail.json') as f:
         steps = json.load(f)
         print(steps)
 
-        # order steps by order key
-        steps.sort(key=lambda step: step['stepId'])
-
         for step in steps:
             print(f"distribute {step['pressed']*0.5}cl of {step['slot']} and wait {step['delayAfter']}")
             position = getLiquid(step['pressed'], step['slot'], position)
             sleep(step['delayAfter'])
+
         print(f"the cocktail is finished")
+        position = presentCoktail(position)
+
     except:
         print(f"ERRROR")
  

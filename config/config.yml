@@ -28,3 +28,4 @@ bottle_slot_position:
   slot_12: 11
 time_for_one_quantity: 0.18 # time in seconds for 1 cl
 time_for_fill_dispensor: 0.18 # time in seconds for fill dispensor
+present_position: 1700

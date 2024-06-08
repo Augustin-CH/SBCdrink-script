@@ -41,3 +41,5 @@ BOTTLE_SLOT_POSITION = {
 TIME_FOR_ONE_QUANTITY = config["time_for_one_quantity"]
 
 TIME_FOR_FILL_DISPENSOR = config["time_for_fill_dispensor"]
+
+PRESENT_POSITION = config["present_position"]
