@@ -2,8 +2,12 @@ import sys
 import os
 import json
 from config.config import *
+<<<<<<< HEAD
 from functions.getLiquid import getLiquid
 from functions.rotate import initPosition, rotate, presentCoktail
+=======
+# from functions.getLiquid import getLiquid
+>>>>>>> main
 
 # Ajouter le dossier protos au chemin du système
 sys.path.append(os.path.join(os.path.dirname(__file__), 'protos'))
@@ -12,7 +16,7 @@ import grpc
 from concurrent import futures
 import machine_pb2, machine_pb2_grpc
 from time import sleep
-import RPi.GPIO as GPIO
+# import RPi.GPIO as GPIO
 
 position = 0
 
@@ -52,4 +56,4 @@ def serve():
 
 if __name__ == '__main__':
     serve()
-    GPIO.cleanup()
+    # GPIO.cleanup()
