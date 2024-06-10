@@ -16,19 +16,19 @@ from time import sleep
 
 position = 0
 
-class MachineServicer(machine_pb2_grpc.MachineServicer):
-    def initBeltPosition():
-        print("----- init position -----")
-        initPosition()
-        rotate("belt", 4, "right")
-        position = 4
-        sleep(2)
-        return position
+def initBeltPosition():
+    print("----- init position -----")
+    initPosition()
+    rotate("belt", 4, "right")
+    position = 4
+    sleep(2)
+    return position
 
+class MachineServicer(machine_pb2_grpc.MachineServicer):
     def MakeCocktail(self, request, context):
         print("---------------------------")
         print(f"Cocktail composition : {request.steps}")
-        position = self.initBeltPosition()
+        position = initBeltPosition()
         steps = json.loads(request.steps)
 
         for step in steps:
