@@ -37,12 +37,20 @@ def getLiquid(quantity, slot, position):
         sleep(bottleUptime)
         rotate("bottle" , 90, "down")  # descend
         sleep(0.5)
-        rotate("belt" ,80, "right")   # decale droite
+        if(slot < 12):
+            rotate("belt" ,80, "right")   # decale droite
+        else:
+            rotate("belt" ,80, "left")   # decale gauche
+
         sleep(1)
         rotate("bottle" ,360, "down")  # descend
         #sleep(TIME_FOR_FILL_DISPENSOR)
         #rotate("belt" ,80, "left")   # decale gauche
         sleep(1)
         bottleUptime  = bottleUptime - TIME_FOR_ONE_QUANTITY * quantityPerTurn
-    position = int(BOTTLE_SLOT_POSITION["SLOT_" + str(slot)] + 80)
+    
+    if(slot < 12):
+        position = int(BOTTLE_SLOT_POSITION["SLOT_" + str(slot)] + 80)
+    else:
+        position = int(BOTTLE_SLOT_POSITION["SLOT_" + str(slot)] + 80)
     return position
