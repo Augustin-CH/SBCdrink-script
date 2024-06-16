@@ -2,3 +2,4 @@ grpcio
 protobuf
 grpcio-tools
 pyyaml
+RPi.GPIO
