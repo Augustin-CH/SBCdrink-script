@@ -4,8 +4,7 @@ WORKDIR /script
 COPY . .
 
 RUN apt-get update && \
-    apt-get install -y build-essential python3-dev libatomic1 python3-rpi.gpio && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y build-essential python3-dev libatomic1 python3-rpi.gpio
 RUN pip3 install -r requirements.txt
 
 FROM python:3.9-slim as development
