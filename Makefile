@@ -33,7 +33,7 @@ init: ## Init the project (npm install)
 
 .PHONY: start
 start: ## Start the project
-	$(EXEC) python mainProtos.py
+	$(EXEC) python main.py
 
 .PHONY: logs
 logs: ## Display logs
