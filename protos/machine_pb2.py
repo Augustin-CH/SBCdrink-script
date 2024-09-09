@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rmachine.proto\x12\x07machine\"$\n\x13MakeCocktailRequest\x12\r\n\x05steps\x18\x01 \x01(\t\"8\n\x14MakeCocktailResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t2X\n\x07Machine\x12M\n\x0cMakeCocktail\x12\x1c.machine.MakeCocktailRequest\x1a\x1d.machine.MakeCocktailResponse\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rmachine.proto\x12\x07machine\"e\n\x13MakeCocktailRequest\x12\r\n\x05steps\x18\x01 \x01(\t\x12\x1f\n\x17\x64ispenser_emptying_time\x18\x02 \x01(\x05\x12\x1e\n\x16\x64ispenser_filling_time\x18\x03 \x01(\x05\"8\n\x14MakeCocktailResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t2X\n\x07Machine\x12M\n\x0cMakeCocktail\x12\x1c.machine.MakeCocktailRequest\x1a\x1d.machine.MakeCocktailResponse\"\x00\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -21,9 +21,9 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'machine_pb2', _globals)
 if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   _globals['_MAKECOCKTAILREQUEST']._serialized_start=26
-  _globals['_MAKECOCKTAILREQUEST']._serialized_end=62
-  _globals['_MAKECOCKTAILRESPONSE']._serialized_start=64
-  _globals['_MAKECOCKTAILRESPONSE']._serialized_end=120
-  _globals['_MACHINE']._serialized_start=122
-  _globals['_MACHINE']._serialized_end=210
+  _globals['_MAKECOCKTAILREQUEST']._serialized_end=127
+  _globals['_MAKECOCKTAILRESPONSE']._serialized_start=129
+  _globals['_MAKECOCKTAILRESPONSE']._serialized_end=185
+  _globals['_MACHINE']._serialized_start=187
+  _globals['_MACHINE']._serialized_end=275
 # @@protoc_insertion_point(module_scope)

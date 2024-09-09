@@ -3,7 +3,9 @@ import os
 import json
 from config.config import *
 from functions.getLiquid import getLiquid
-from functions.rotate import initPosition, rotate, presentCoktail
+from functions.presentCocktail import presentCocktail
+from functions.initBeltPosition import initBeltPosition
+
 
 # Ajouter le dossier protos au chemin du système
 sys.path.append(os.path.join(os.path.dirname(__file__), 'protos'))
@@ -14,30 +16,35 @@ import machine_pb2, machine_pb2_grpc
 from time import sleep
 # import RPi.GPIO as GPIO
 
-position = 0
-
-def initBeltPosition():
-    print("----- init position -----")
-    initPosition()
-    rotate("belt", 4, "right")
-    position = 4
-    sleep(2)
-    return position
+currentPosition = 0
 
 class MachineServicer(machine_pb2_grpc.MachineServicer):
     def MakeCocktail(self, request, context):
         print("---------------------------")
         print(f"Cocktail composition : {request.steps}")
-        position = initBeltPosition()
+        currentPosition = initBeltPosition()
+
+        # steps format :
+        # Array<{
+        #     stepId: string
+        #     pressed: number
+        #     delayAfter: number
+        #     position: number
+        # }>
         steps = json.loads(request.steps)
+        dispenserEmptyingTime = request.dispenser_emptying_time 
+        dispenserFillingTime = request.dispenser_filling_time
+
+        print(f"dispenser emptying time : {dispenserEmptyingTime}")
+        print(f"dispenser filling time : {dispenserFillingTime}")
 
         for step in steps:
-            print(f"distribute {step['pressed']*0.5}cl of {step['slot']} and wait {step['delayAfter']}")
-            position = getLiquid(step['pressed'], step['slot'], position)
+            print(f"step {step['stepId']} distribute at position {step['position']}, pressed {step['pressed']} seconde and delayAfter {step['delayAfter']} seconds")
+            currentPosition = getLiquid(step, currentPosition, dispenserEmptyingTime, dispenserFillingTime)
             sleep(step['delayAfter'])
 
         print(f"the cocktail is finished")
-        position = presentCoktail(position)
+        currentPosition = presentCocktail(currentPosition)
         return machine_pb2.MakeCocktailResponse(success=True, message="Cocktail done with success")
 
 def serve():

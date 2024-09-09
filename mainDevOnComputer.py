@@ -17,8 +17,14 @@ class MachineServicer(machine_pb2_grpc.MachineServicer):
         print(f"Cocktail composition : {request.steps}")
         steps = json.loads(request.steps)
 
+        dispenserEmptyingTime = request.dispenser_emptying_time 
+        dispenserFillingTime = request.dispenser_filling_time
+
+        print(f"dispenser emptying time : {dispenserEmptyingTime}")
+        print(f"dispenser filling time : {dispenserFillingTime}")
+
         for step in steps:
-            print(f"distribute {step['pressed']*0.5}cl of {step['slot']} and wait {step['delayAfter']}")
+            print(f"step {step['stepId']} distribute at position {step['position']}, pressed {step['pressed']} seconde and delayAfter {step['delayAfter']} seconds")
             sleep(step['delayAfter'])
 
         print(f"the cocktail is finished")
