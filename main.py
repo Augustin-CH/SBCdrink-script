@@ -41,6 +41,7 @@ class MachineServicer(machine_pb2_grpc.MachineServicer):
         for step in steps:
             print(f"step {step['stepId']} distribute at position {step['position']}, pressed {step['pressed']} seconde and delayAfter {step['delayAfter']} seconds")
             currentPosition = getLiquid(step, currentPosition, dispenserEmptyingTime, dispenserFillingTime)
+            print("ICI3")
             sleep(step['delayAfter'])
 
         print(f"the cocktail is finished")

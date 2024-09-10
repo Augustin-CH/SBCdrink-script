@@ -4,6 +4,7 @@ from functions.rotate import rotate
 from config.config import *
 
 def getLiquid(step, currentPosition, dispenserEmptyingTime, dispenserFillingTime):
+    print("ICI1")
 
     # rotate("belt" , 850, "right") # droit
     # sleep(1)
@@ -14,9 +15,9 @@ def getLiquid(step, currentPosition, dispenserEmptyingTime, dispenserFillingTime
     # rotate("bottle" , 450, "down") # gauche
     # sleep(1)
     
-    pressed = step.pressed
-    delayAfter = step.delayAfter
-    slotPosition = step.position
+    pressed = step['pressed']
+    delayAfter = step['delayAfter']
+    slotPosition = step['position']
 
     if (slotPosition - currentPosition < 0):
         # If position is higher than slot position, go to the left
@@ -36,7 +37,7 @@ def getLiquid(step, currentPosition, dispenserEmptyingTime, dispenserFillingTime
 
     sleep(1)
     rotate("bottle" ,360, "down")  # descend
-    sleep(delayAfter - 1.5) # 1.5 secondes pour compencer le temps des actions precedentes
+    sleep(max(delayAfter - 1.5, 0)) # 1.5 secondes pour compencer le temps des actions precedentes, si inferieur a 0 sleep(0)
     
     if(currentPosition < 100):
         currentPosition = int(slotPosition + 80)
