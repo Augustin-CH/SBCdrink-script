@@ -34,9 +34,9 @@ def getLiquid(step, currentPosition, dispenserEmptyingTime, dispenserFillingTime
     rotate("bottle", 90, "down")  # descend
     sleep(0.5)
     if(currentPosition < 100): # 100 a la place de 80 pour garder une marge et pas bloquer tout a gauche
-        rotate("belt", 80, "right")   # decale droite
+        rotate("belt", 70, "right")   # decale droite
     else:
-        rotate("belt", 80, "left")   # decale gauche
+        rotate("belt", 70, "left")   # decale gauche
 
     sleep(1)
     initPosition("bottle", 150)

@@ -66,5 +66,5 @@ def initPosition(motorType, setPosition):
     searchLimite(motorType)
     rotate(motorType, setPosition, "right")
     position = setPosition
-    sleep(2)
+    sleep(0.5)
     return position
