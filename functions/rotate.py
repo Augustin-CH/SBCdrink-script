@@ -2,7 +2,6 @@
 from time import sleep
 import RPi.GPIO as GPIO
 from config.config import *
-from functions.setAllGpioToLow import setAllGpioToLow
 
 GPIO.setmode(GPIO.BCM)         # Paramétrage de la numérotation des GPIO en mode BCM
 GPIO.setwarnings(True)        # Ne pas tenir compte des alertes
@@ -16,6 +15,7 @@ GPIO.setup(BOTTLE_ENGINE["PIN_OUT_2"], GPIO.OUT, initial=0)      # GPIO PIN_OUT 
 GPIO.setup(BOTTLE_ENGINE["PIN_OUT_3"], GPIO.OUT, initial=0)     # GPIO PIN_OUT configuré en sortie
 GPIO.setup(BOTTLE_ENGINE["PIN_OUT_4"], GPIO.OUT, initial=0)      # GPIO PIN_OUT configuré en sortie
 GPIO.setup(BELT_LIMIT_SENSOR["PIN_SIGNAL"], GPIO.IN)
+GPIO.setup(BOTTLE_LIMIT_SENSOR["PIN_SIGNAL"], GPIO.IN)
 
 def rotate(motorType, dist, sens):
     rangefor = 0
@@ -66,5 +66,3 @@ def rotate(motorType, dist, sens):
             GPIO.output(pin_out_1, GPIO.HIGH)
 
         sleep(step_sleep)
-
-    setAllGpioToLow()

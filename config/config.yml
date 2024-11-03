@@ -13,19 +13,8 @@ bottle_engine:
   step_sleep: 0.001
 belt_limit_sensor:
   pin_signal: 16
-bottle_slot_position:
-  slot_1: 260 # in step
-  slot_2: 1095
-  slot_3: 1980
-  slot_4: 3
-  slot_5: 4
-  slot_6: 5
-  slot_7: 6
-  slot_8: 7
-  slot_9: 8
-  slot_10: 9
-  slot_11: 10
-  slot_12: 2500
+bottle_limit_sensor:
+  pin_signal: 26
 time_for_one_quantity: 0.18 # time in seconds for 1 cl
 time_for_fill_dispensor: 0.18 # time in seconds for fill dispensor
 present_position: 1700

@@ -5,8 +5,9 @@ import json
 import RPi.GPIO as GPIO
 from config.config import *
 from functions.rotate import rotate
-from functions.presentCocktail import presentCoktail
-from functions.initBeltPosition import initBeltPosition
+from functions.presentCocktail import presentCocktail
+from functions.initPosition import initPosition
+from functions.setAllGpioToLow import setAllGpioToLow
 
 position = 10
 
@@ -18,7 +19,7 @@ global steps
         
 with open('testCocktail.json') as f:
     try:
-        position = initBeltPosition()
+        position = initPosition("belt", 4)
         
         steps = json.load(f)
         print(steps)
@@ -32,7 +33,9 @@ with open('testCocktail.json') as f:
             sleep(step['delayAfter'])
 
         print(f"the cocktail is finished")
-        position = presentCoktail(position)
+        setAllGpioToLow()
+        # position = presentCocktail(position)
+
 
     except:
         print(f"ERRROR")

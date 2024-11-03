@@ -23,4 +23,8 @@ BELT_LIMIT_SENSOR = {
     "PIN_SIGNAL": config["belt_limit_sensor"]["pin_signal"],
 }
 
+BOTTLE_LIMIT_SENSOR = {
+    "PIN_SIGNAL": config["bottle_limit_sensor"]["pin_signal"],
+}
+
 PRESENT_POSITION = config["present_position"]

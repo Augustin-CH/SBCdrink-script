@@ -4,8 +4,8 @@ import json
 from config.config import *
 from functions.getLiquid import getLiquid
 from functions.presentCocktail import presentCocktail
-from functions.initBeltPosition import initBeltPosition
-
+from functions.initPosition import initPosition
+from functions.setAllGpioToLow import setAllGpioToLow
 
 # Ajouter le dossier protos au chemin du système
 sys.path.append(os.path.join(os.path.dirname(__file__), 'protos'))
@@ -22,7 +22,7 @@ class MachineServicer(machine_pb2_grpc.MachineServicer):
     def MakeCocktail(self, request, context):
         print("---------------------------")
         print(f"Cocktail composition : {request.steps}")
-        currentPosition = initBeltPosition()
+        currentPosition = initPosition("belt", 4)
 
         # steps format :
         # Array<{
@@ -44,7 +44,8 @@ class MachineServicer(machine_pb2_grpc.MachineServicer):
             sleep(step['delayAfter'])
 
         print(f"the cocktail is finished")
-        currentPosition = presentCocktail(currentPosition)
+        # currentPosition = presentCocktail(currentPosition)
+        setAllGpioToLow()
         return machine_pb2.MakeCocktailResponse(success=True, message="Cocktail done with success")
 
 def serve():

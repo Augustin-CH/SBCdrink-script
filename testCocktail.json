@@ -3,12 +3,7 @@
     "stepId" : 1,
     "slot": 2,
     "pressed": 4,
-    "delayAfter": 0
-  },
-  {
-    "stepId" : 2,
-    "slot": 3,
-    "pressed": 2,
-    "delayAfter": 0
+    "delayAfter": 0,
+    "position": 650
   }
 ]

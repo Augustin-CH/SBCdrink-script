@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 from time import sleep
 from functions.rotate import rotate
+from functions.initPosition import initPosition
 from config.config import *
 
 def getLiquid(step, currentPosition, dispenserEmptyingTime, dispenserFillingTime):
@@ -14,7 +15,9 @@ def getLiquid(step, currentPosition, dispenserEmptyingTime, dispenserFillingTime
     # sleep(1)
     # rotate("bottle" , 450, "down") # gauche
     # sleep(1)
-    
+
+    initPosition("bottle", 150)
+
     pressed = step['pressed']
     delayAfter = step['delayAfter']
     slotPosition = step['position']
@@ -36,7 +39,7 @@ def getLiquid(step, currentPosition, dispenserEmptyingTime, dispenserFillingTime
         rotate("belt", 80, "left")   # decale gauche
 
     sleep(1)
-    rotate("bottle", 410, "down")  # descend
+    initPosition("bottle", 150)
     sleep(max(delayAfter - 1.5, 0)) # 1.5 secondes pour compencer le temps des actions precedentes, si inferieur a 0 sleep(0)
     
     if(currentPosition < 100):
