@@ -6,6 +6,7 @@ from config.config import *
 
 def getLiquid(step, currentPosition, dispenserEmptyingTime, dispenserFillingTime):
     print("ICI1")
+    print("currentPosition", currentPosition)
 
     # rotate("belt" , 850, "right") # droit
     # sleep(1)
@@ -29,7 +30,7 @@ def getLiquid(step, currentPosition, dispenserEmptyingTime, dispenserFillingTime
         # Else, go right
         rotate("belt", int(slotPosition - currentPosition ), "right")
 
-    rotate("bottle", 500, "up") # monte
+    rotate("bottle", 520, "up") # monte
     sleep(pressed)
     rotate("bottle", 90, "down")  # descend
     sleep(0.5)
