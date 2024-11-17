@@ -30,7 +30,7 @@ def getLiquid(step, currentPosition, dispenserEmptyingTime, dispenserFillingTime
         # Else, go right
         rotate("belt", int(slotPosition - currentPosition ), "right")
 
-    rotate("bottle", 520, "up") # monte
+    rotate("bottle", 530, "up") # monte
     sleep(pressed)
     rotate("bottle", 90, "down")  # descend
     sleep(0.5)
